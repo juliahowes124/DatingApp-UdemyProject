@@ -25,9 +25,12 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
+        public async Task<IActionResult> Register([FromBody]UserForRegisterDto userForRegisterDto)
         {
             // validate request
+            // if (!ModelState.IsValid)
+            //     return BadRequest(ModelState);
+            //without the [ApiController] this would handle the null input 
 
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
 
@@ -38,6 +41,7 @@ namespace DatingApp.API.Controllers
             {
                 Username = userForRegisterDto.Username
             };
+
 
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
 
