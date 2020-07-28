@@ -111,7 +111,6 @@ deleteMessage(id: number, userId: number) {
 }
 
 markAsRead(userId: number, messageId: number) {
-  this.http.post(this.baseUrl + 'users/' + userId + '/message/' + messageId + '/read', {}).subscribe();
+  this.http.post(this.baseUrl + 'users/' + userId + '/messages/' + messageId + '/read', {}).subscribe();
 }
-
 }
